@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'app';
+  routes = ["Home","Books","AddBooks","Remove Book", "Reinstate", "Feedback"];
 }

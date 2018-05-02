@@ -9,8 +9,8 @@ export class BookService {
 
   constructor(private _http:Http) { }
 
-  home_page(){
-    return this._http.get('/')
-      .map(result => this.result = result.json);
+  getAllBooks(){
+    return this._http.get('/api/books')
+      .map(result => this.result = result.json());
   }
 }

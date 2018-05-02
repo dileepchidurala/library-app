@@ -19,7 +19,7 @@ db.connect((err)=>{
     console.log("mysql db connected");
 });
 
-router.get('/all',(req,res) =>{
+router.get('/books',(req,res) =>{
     var sql_query = 'select * from library.books';
     db.query(sql_query,(err,result)=>{
         if(err){

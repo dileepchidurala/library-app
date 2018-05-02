@@ -3,32 +3,36 @@ import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatMenuModule} from '@angular/material/menu';
-import { MatIconModule } from "@angular/material/icon"; 
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+//All the module that covalent needed is imported in this shared folder
+import { SharedModule } from './shared/shared.module';
+
+//Angular Materials imports
+import {MatInputModule} from '@angular/material/input';
 
 import { BookService } from './book.service';
-import { NavbarComponent } from './navbar/navbar.component';
 
-
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { BooksComponent } from './books/books.component';
+import { AddBookComponent } from './add-book/add-book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    BooksComponent,
+    AddBookComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatIconModule,
+    SharedModule,
+    MatInputModule,
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

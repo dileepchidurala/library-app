@@ -1,2 +1,44 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<td-layout>
+    <td-navigation-drawer flex sidenavTitle="Library" logo="assets:teradata" name="Firstname Lastname" email="firstname.lastname@company.com">
+      <mat-nav-list>
+        <ol>
+            <li><a [routerLink]="['/']" >Home</a></li>
+            <li><a [routerLink]="['/books']" >Books</a></li>
+            <li><a [routerLink]="['/addbook']" >Add Books</a></li>
+            <li><a href="#">Remove book</a></li>
+            <li><a href="#">Reinstate</a></li>
+            <li><a href="#">Feedback</a></li>
+        </ol>
+      </mat-nav-list>
+      <div td-navigation-drawer-menu>
+        <mat-nav-list>
+          <a *ngFor="let item of usermenu" mat-list-item><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+        </mat-nav-list>
+      </div>
+    </td-navigation-drawer>
+    <td-layout-nav color="accent">
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>
+        <span [routerLink]="['/']" class="cursor-pointer">Library</span>
+        <span flex></span>
+        <ul id="horizontal">
+          <li><a [routerLink]="['/']" >Home</a></li>
+          <li><a [routerLink]="['books']" >Books</a></li>
+          <li><a [routerLink]="['addbook']" >Add Books</a></li>
+          <li><a href="#">Remove book</a></li>
+          <li><a href="#">Reinstate</a></li>
+          <li><a href="#">Feedback</a></li>
+        </ul>
+      </div>
+      <router-outlet></router-outlet>
+      <td-layout-footer>
+        <div layout="row" layout-align="start center">
+          <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
+        </div>
+      </td-layout-footer>
+    </td-layout-nav>
+  </td-layout>
+
