@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
+import {FormsModule , ReactiveFormsModule} from '@angular/forms';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
 import { AddBookComponent } from './add-book/add-book.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +36,8 @@ import { AddBookComponent } from './add-book/add-book.component';
     BrowserAnimationsModule,
     SharedModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

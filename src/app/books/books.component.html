@@ -1,10 +1,40 @@
 <h1>
   Library Books
-  <button>All Books</button>
-  <button>Avliable Books</button>
-  <button>Reserved Books</button>
 </h1>
-<table td-data-table>
+
+
+<div class="grid">
+  <div></div>
+
+
+  <div>
+
+      <mat-tab-group mat-stretch-tabs>
+          <mat-tab>
+            <ng-template matTabLabel>
+              <div layout="row" layout-align="center center">
+                  All Books
+              </div>
+            </ng-template>
+          </mat-tab>
+          <mat-tab>
+            <ng-template matTabLabel>
+              <div layout="row" layout-align="center center">
+                  Avliable Books
+              </div>
+            </ng-template>
+          </mat-tab>
+          <mat-tab>
+            <ng-template matTabLabel>
+              <div layout="row" layout-align="center center">
+                  Reserved Books
+              </div>
+            </ng-template>
+          </mat-tab>
+      </mat-tab-group>
+
+
+    <table td-data-table>
     <thead>
       <tr td-data-table-column-row>
         <th td-data-table-column
@@ -20,7 +50,17 @@
     <tbody>
       <tr td-data-table-row *ngFor="let row of books">
         <td td-data-table-cell *ngFor="let column of columns">
-          {{row[column.name]}}
+          <div *ngIf="column.name=='status'">
+            <div *ngIf="row.status==1">
+                Avaliable
+            </div>
+            <div *ngIf="row.status==0">
+                Avaliable
+            </div>
+          </div>
+          <div *ngIf="column.name!='status'">
+          {{row[column.name]}} 
+          </div>
         </td>
         <td td-data-table-cell (click)="openPrompt(row, 'Reserve')">
           <button mat-button [class.mat-accent]="!row['Reserve']">{{row['Reserve'] || 'Avliable'}}</button>
@@ -28,3 +68,8 @@
       </tr>
     </tbody>
   </table>
+  </div>
+
+
+  <div></div>
+</div>

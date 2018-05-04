@@ -30,4 +30,14 @@ router.get('/books',(req,res) =>{
 });
 
 
+router.post('/addbook',(req,res)=>{
+    var sql_query='insert into library.books values( null,'+ req.body.book_id +',\''+ req.body.book_name +'\',\''+ req.body.description +'\',\''+ req.body.author+'\',\''+req.body.publication+'\','+req.body.price+','+req.body.status+');';
+    db.query(sql_query,(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        res.send(result);
+    });
+});
+
 module.exports = router;

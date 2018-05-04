@@ -2,6 +2,13 @@ body {
     font-family: "Open Sans", sans-serif;
     line-height: 1.25;
   }
+
+.grid
+{
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+}
+
   table {
     border: 1px solid rgb(202, 132, 132);
     border-collapse: collapse;
