@@ -1,12 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid rgb(212, 132, 40);
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: rgb(191, 182, 157);
+}
+
+.searchTerm:focus{
+  color: rgb(75, 204, 0);
+}
+
+/* .searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid rgb(248, 244, 239);
+  background: rgb(236, 235, 230);
+  text-align: center;
+  color: rgb(235, 77, 77);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+} */
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 body {
     font-family: "Open Sans", sans-serif;
     line-height: 1.25;
   }
 
+.total
+{
+  display: grid;
+  grid-template-rows: 10%,90%;
+}
+
 .grid
 {
   display: grid;
-  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-columns: 1fr 13fr 1fr;
+}
+.middle-div{
+  border: 2px solid rgb(132, 176, 202);
+  border-radius: 10px;
 }
 
   table {
@@ -46,5 +106,6 @@ body {
   }
   h1{
       padding-left: 10%;
+      color: tomato;
   }
   
