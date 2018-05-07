@@ -32,6 +32,7 @@ export class AddBookComponent implements OnInit {
 
   addbook(book: Book){
     console.log(book);
+    book.status=true;
     var subscribe = this._bookService.insertbook(book)
       .subscribe(() =>{
         this.router.navigateByUrl('/books');

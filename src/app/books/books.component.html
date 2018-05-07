@@ -1,7 +1,7 @@
 <div class="total">
   
 <h1>
-  Library Books
+  TIES Library Books
 </h1>
 
 
@@ -18,29 +18,31 @@
   <div></div>
   <div class="middle-div">
 
-      <mat-tab-group mat-stretch-tabs>
-          <mat-tab>
-            <ng-template matTabLabel>
-              <div layout="row" layout-align="center center">
-                  All Books
-              </div>
-            </ng-template>
-          </mat-tab>
-          <mat-tab>
-            <ng-template matTabLabel>
-              <div layout="row" layout-align="center center">
-                  Avliable Books
-              </div>
-            </ng-template>
-          </mat-tab>
-          <mat-tab>
-            <ng-template matTabLabel>
-              <div layout="row" layout-align="center center">
-                  Reserved Books
-              </div>
-            </ng-template>
-          </mat-tab>
-      </mat-tab-group>
+      <div class="tabs">
+          <mat-tab-group mat-stretch-tabs>
+              <mat-tab>
+                <ng-template matTabLabel>
+                  <div layout="row" layout-align="center center">
+                      <h3>All Books</h3>
+                  </div>
+                </ng-template>
+              </mat-tab>
+              <mat-tab>
+                <ng-template matTabLabel>
+                  <div layout="row" layout-align="center center">
+                      <h3>Avliable Books</h3>
+                  </div>
+                </ng-template>
+              </mat-tab>
+              <mat-tab>
+                <ng-template matTabLabel>
+                  <div layout="row" layout-align="center center">
+                      <h3>Reserved Books</h3>
+                  </div>
+                </ng-template>
+              </mat-tab>
+          </mat-tab-group>
+      </div>
 
 
     <table td-data-table>

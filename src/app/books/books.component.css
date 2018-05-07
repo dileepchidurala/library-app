@@ -65,7 +65,13 @@ body {
   grid-template-columns: 1fr 13fr 1fr;
 }
 .middle-div{
+  background-color: rgb(233, 233, 233);
   border: 2px solid rgb(132, 176, 202);
+  border-radius: 10px;
+}
+
+.tabs{
+  background-color: white;
   border-radius: 10px;
 }
 
@@ -106,6 +112,10 @@ body {
   }
   h1{
       padding-left: 10%;
-      color: tomato;
+      color: rgb(230, 36, 29);
   }
+  h3{
+    padding-left: 10%;
+    color:rgb(128, 0, 49);
+}
   
