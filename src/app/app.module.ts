@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 //Angular Materials imports
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { BookService } from './book.service';
 
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { AddBookComponent } from './add-book/add-book.component';
     HomeComponent,
     BooksComponent,
     AddBookComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +39,12 @@ import { AddBookComponent } from './add-book/add-book.component';
     BrowserAnimationsModule,
     SharedModule,
     MatInputModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

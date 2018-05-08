@@ -5,15 +5,6 @@
 </h1>
 
 
-<div class="wrap">
-    <div class="search">
-       <input type="text" class="searchTerm" placeholder="What are you looking for?">
-       <button type="submit" ><mat-icon>search</mat-icon>
-      </button>
-    </div>
- </div>
-
-
 <div class="grid">
   <div></div>
   <div class="middle-div">
@@ -22,21 +13,23 @@
           <mat-tab-group mat-stretch-tabs>
               <mat-tab>
                 <ng-template matTabLabel>
-                  <div layout="row" layout-align="center center">
+                  <div layout="row" layout-align="center center" (click)="allbooks()">
                       <h3>All Books</h3>
                   </div>
                 </ng-template>
               </mat-tab>
+
+              <mat-tab >
+                  <ng-template matTabLabel>
+                    <div layout="row" layout-align="center center" (click)="avaliablebooks()">
+                        <h3>Avaliable Books</h3>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+
               <mat-tab>
                 <ng-template matTabLabel>
-                  <div layout="row" layout-align="center center">
-                      <h3>Avliable Books</h3>
-                  </div>
-                </ng-template>
-              </mat-tab>
-              <mat-tab>
-                <ng-template matTabLabel>
-                  <div layout="row" layout-align="center center">
+                  <div layout="row" layout-align="center center" (click)="reservedbooks()">
                       <h3>Reserved Books</h3>
                   </div>
                 </ng-template>
@@ -45,40 +38,27 @@
       </div>
 
 
-    <table td-data-table>
-    <thead>
-      <tr td-data-table-column-row>
-        <th td-data-table-column
-            *ngFor="let column of columns"
-            [numeric]="column.numeric">
-          {{column.label}}
-        </th>
-        <th td-data-table-column>
-          <span>Action</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr td-data-table-row *ngFor="let row of books">
-        <td td-data-table-cell *ngFor="let column of columns">
-          <div *ngIf="column.name=='status'">
-            <div *ngIf="row.status==1">
-                Avaliable
-            </div>
-            <div *ngIf="row.status==0">
-                Avaliable
-            </div>
-          </div>
-          <div *ngIf="column.name!='status'">
-          {{row[column.name]}} 
-          </div>
-        </td>
-        <td td-data-table-cell (click)="openPrompt(row, 'Reserve')">
-          <button mat-button [class.mat-accent]="!row['Reserve']">{{row['Reserve'] || 'Avliable'}}</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm" style="background-color: orange">
+        <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+          <span class="mat-title">TIES Library Books</span>
+        </span>
+        <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+        </span>
+        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)" flex>
+        </td-search-box>
+      </div>
+      <mat-divider></mat-divider>
+      <td-data-table style="background-color: white; "
+        #dataTable
+        [data]="filteredData"
+        [columns]="columns"
+        [clickable]="true"
+        (rowClick)="showAlert($event)">
+      </td-data-table>
+      <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+        <h3>No results to display.</h3>
+      </div>
+
   </div>
 
 
