@@ -5,7 +5,7 @@
             <li><a [routerLink]="['/']" > <mat-icon>home</mat-icon> Home</a></li>
             <li><a [routerLink]="['/books']" ><mat-icon>book</mat-icon>Books</a></li>
             <li><a [routerLink]="['/addbook']" ><mat-icon>add</mat-icon>Add Books</a></li>
-            <li><a href="#"><mat-icon>delete</mat-icon>Remove book</a></li>
+            <li><a [routerLink]="['/remove']"><mat-icon>delete</mat-icon>Remove book</a></li>
             <li><a href="#">Reinstate</a></li>
             <li><a href="#">Feedback</a></li>
         </ol>
@@ -22,16 +22,16 @@
         <button mat-icon-button td-menu-button tdLayoutToggle>
           <mat-icon>menu</mat-icon>
         </button>
-        <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>
+        <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata">Teradata</mat-icon>
         <span [routerLink]="['/']" class="cursor-pointer">Library</span>
         <span flex></span>
         <ul id="horizontal">
           <li><a [routerLink]="['/']" ><mat-icon>home</mat-icon> Home</a></li>
-          <li><a [routerLink]="['books']" ><mat-icon>book</mat-icon>Books</a></li>
-          <li><a [routerLink]="['addbook']" ><mat-icon>add</mat-icon> Add Books</a></li>
-          <li><a href="#"><mat-icon>delete</mat-icon>Remove book</a></li>
-          <li><a href="#">Reinstate</a></li>
-          <li><a href="#">Feedback</a></li>
+          <li><a [routerLink]="['books']" routerLinkActive="active"><mat-icon>book</mat-icon>Books</a></li>
+          <li><a [routerLink]="['addbook']" routerLinkActive="active"><mat-icon>add</mat-icon> Add Books</a></li>
+          <li><a [routerLink]="['remove']"routerLinkActive="active"><mat-icon>delete</mat-icon>Remove book</a></li>
+          <li><a href="#" routerLinkActive="active">Reinstate</a></li>
+          <li><a href="#" routerLinkActive="active">Feedback</a></li>
         </ul>
       </div>
       <router-outlet></router-outlet>

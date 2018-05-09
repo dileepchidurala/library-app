@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';//for identifying router and use it for remove
 
 import { ITdDataTableColumn, TdDataTableService, TdDataTableSortingOrder, ITdDataTableSortChangeEvent } from '@covalent/core/data-table';
 import { TdDialogService } from '@covalent/core/dialogs';
@@ -48,7 +49,7 @@ import { BookService } from '../book.service';
 
   searchTerm: string = '';
   res:string;
-  constructor(private dialog: MatDialog ,private _dataTableService: TdDataTableService , private _bookService: BookService) { }
+  constructor(private router:Router,private dialog: MatDialog ,private _dataTableService: TdDataTableService , private _bookService: BookService) { }
 
   ngOnInit() {
     this.allbooks();
@@ -62,21 +63,43 @@ import { BookService } from '../book.service';
 
   showAlert(event: any): void {
     let row: any = event.row;
-    // prompt("Are you sure you want to reserve this book");
-    let dialogRef = this.dialog.open(DialogComponent, {
-      width: '350px',
-      data: {text:"Are you sure you want to reserve this book",status:event.row.status}
-    });
+    let dialogRef;
+    if(this.router.url=='/books')
+    {
+      dialogRef = this.dialog.open(DialogComponent, {
+        width: '350px',
+        data: {text:"Are you sure you want to reserve this book",status:event.row.status}
+      });
+    }
 
+    if(this.router.url=='/remove')
+    {
+      dialogRef = this.dialog.open(DialogComponent, {
+        width: '350px',
+        data: {text:"Are you sure you want to delete this book",status:event.row.status}
+      });
+    }
+    
+    
     dialogRef.afterClosed().subscribe(result => {
       this.res = result;
       if(this.res)
       {
-        console.log('Mail will be sent for you to get the book'+event.row.id);
-        this._bookService.reservationOfBook(event.row.id)
-          .subscribe(res => {
+        if(this.router.url=='/books')
+        {
+          console.log('Mail will be sent for you to get the book'+event.row.id);
+          this._bookService.reservationOfBook(event.row.id)
+            .subscribe(res => {
             this.allbooks();
           });
+        }
+        if(this.router.url=='/remove')
+        {
+          this._bookService.deleteBook(event.row.id)
+            .subscribe(res => {
+            this.allbooks();
+          });
+        }
       }
     });  
   }

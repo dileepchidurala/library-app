@@ -38,4 +38,9 @@ export class BookService {
       .map(result =>this.result = result.json());
   }
 
+  deleteBook(id){
+    return this._http.delete('/api/delete/'+id)
+      .map(result => this.result = result);
+  }
+
 }

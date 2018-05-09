@@ -24,7 +24,7 @@ export class AddBookComponent implements OnInit {
       'description':[null],
       'author':[null, Validators.compose([Validators.required, Validators.minLength(3) ])],
       'publication':[null],
-      'price':[0],
+      'price':[0, Validators.compose([])],
       // 'status':[true],
     });
   }

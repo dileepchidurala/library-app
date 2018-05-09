@@ -69,4 +69,14 @@ router.post('/addbook',(req,res)=>{
     });
 });
 
+router.delete('/delete/:id',(req,res) => {
+    var sql_query='delete from library.books where id='+req.params.id;
+    db.query(sql_query,(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        res.send(result);
+    });
+});
+
 module.exports = router;

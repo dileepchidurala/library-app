@@ -5,6 +5,7 @@
 </h1>
 
 
+
 <div class="grid">
   <div></div>
   <div class="middle-div">
@@ -41,6 +42,7 @@
       <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm" style="background-color: orange">
         <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
           <span class="mat-title">TIES Library Books</span>
+          <span  class="mat-title" *ngIf="router.url=='/remove'">-Removing page</span>
         </span>
         <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
         </span>
