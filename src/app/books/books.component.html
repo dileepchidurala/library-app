@@ -53,8 +53,8 @@
         [data]="filteredData"
         [columns]="columns"
         [clickable]="true"
-        (rowClick)="showAlert($event)">
-      </td-data-table>
+        (rowClick)="showAlert($event)">      
+        </td-data-table>
       <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
         <h3>No results to display.</h3>
       </div>

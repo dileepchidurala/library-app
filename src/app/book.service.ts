@@ -27,7 +27,6 @@ export class BookService {
   }
 
   reservationOfBook(id){
-    console.log(id);
     return this._http.get('/api/reservation/'+id)
       .map(result => this.result = result.json());
   }
