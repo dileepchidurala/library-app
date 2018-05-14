@@ -1,36 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';//for identifying router and use it for remove
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router"; //for identifying router and use it for remove
 
-import { ITdDataTableColumn, TdDataTableService, TdDataTableSortingOrder, ITdDataTableSortChangeEvent } from '@covalent/core/data-table';
-import { TdDialogService } from '@covalent/core/dialogs';
+import {
+  ITdDataTableColumn,
+  TdDataTableService,
+  TdDataTableSortingOrder,
+  ITdDataTableSortChangeEvent
+} from "@covalent/core/data-table";
+import { TdDialogService } from "@covalent/core/dialogs";
 
 //Angular material
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 
 //Dailog component
-import{ DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from "../dialog/dialog.component";
 
-import{ Book } from '../book';
+import { Book } from "../book";
 
 //service
-import { BookService } from '../book.service';
+import { BookService } from "../book.service";
 
 // const DECIMAL_FORMAT: (v: any) => any = (v: number) => v.toFixed(2);
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  selector: "app-books",
+  templateUrl: "./books.component.html",
+  styleUrls: ["./books.component.css"]
 })
- export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
-    { name: 'book_id',  label: 'Book Id', width:70 },
-    { name: 'book_name', label: 'Book Name', width:300},
-    { name: 'description', label: 'Description' ,width:300 },
-    { name: 'author', label: 'Author' ,width:200},
-    { name: 'publication', label: 'Publication' },
-    {name:'price',label:'Price'},
-    {name:'status',label:'Status'},
+    { name: "book_id", label: "Book Id", width: 70 },
+    { name: "book_name", label: "Book Name", width: 300 },
+    { name: "description", label: "Description", width: 300 },
+    { name: "author", label: "Author", width: 200 },
+    { name: "publication", label: "Publication" },
+    { name: "price", label: "Price" },
+    { name: "status", label: "Status" }
   ];
 
   books: Array<Book> = [];
@@ -42,14 +47,19 @@ import { BookService } from '../book.service';
   //   { name: 'email', label: 'Email', sortable: true, width: 250 },
   //   { name: 'balance', label: 'Balance', numeric: true },
   // ];
-  data: Array<any> = [] ;
+  data: Array<any> = [];
 
   filteredData: any[] = this.data;
   filteredTotal: number = this.data.length;
 
-  searchTerm: string = '';
-  res:string;
-  constructor(private router:Router,private dialog: MatDialog ,private _dataTableService: TdDataTableService , private _bookService: BookService) { }
+  searchTerm: string = "";
+  res: string;
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private _dataTableService: TdDataTableService,
+    private _bookService: BookService
+  ) {}
 
   ngOnInit() {
     this.allbooks();
@@ -64,92 +74,95 @@ import { BookService } from '../book.service';
   showAlert(event: any): void {
     let row: any = event.row;
     let dialogRef;
-    if(this.router.url=='/books')
-    {
+    if (this.router.url == "/books") {
       dialogRef = this.dialog.open(DialogComponent, {
-        width: '350px',
-        data: {text:"Are you sure you want to reserve this book",status:event.row.status}
+        width: "350px",
+        data: {
+          text: "Are you sure you want to reserve this book",
+          status: event.row.status
+        }
       });
     }
 
-    if(this.router.url=='/remove')
-    {
+    if (this.router.url == "/remove") {
       dialogRef = this.dialog.open(DialogComponent, {
-        width: '350px',
-        data: {text:"Are you sure you want to delete this book",status:event.row.status}
+        width: "350px",
+        data: {
+          text: "Are you sure you want to delete this book",
+          status: event.row.status
+        }
       });
     }
-    
-    
+
     dialogRef.afterClosed().subscribe(result => {
       this.res = result;
-      if(this.res)
-      {
-        if(this.router.url=='/books')
-        {
-          console.log('Mail will be sent for you to get the book'+event.row.id);
-          this._bookService.reservationOfBook(event.row.id)
-            .subscribe(res => {
+      if (this.res) {
+        if (this.router.url == "/books") {
+          console.log(
+            "Mail will be sent for you to get the book" + event.row.id
+          );
+          this._bookService.reservationOfBook(event.row.id).subscribe(res => {
             this.allbooks();
           });
         }
-        if(this.router.url=='/remove')
-        {
-          this._bookService.deleteBook(event.row.id)
-            .subscribe(res => {
+        if (this.router.url == "/remove") {
+          this._bookService.deleteBook(event.row.id).subscribe(res => {
             this.allbooks();
           });
         }
       }
-    });  
-  }
-  
-  allbooks(){
-    this._bookService.getAllBooks()
-      .subscribe(res => {
-        this.data = res;
-        this.filter();
-      });
+    });
   }
 
-  avaliablebooks(){
-    this._bookService.getAvaliableBooks()
-      .subscribe(res => {
-        this.data = res;
-        this.filter();
-      });
+  allbooks() {
+    this._bookService.getAllBooks().subscribe(res => {
+      this.data = res;
+      this.filter();
+    });
   }
 
-  reservedbooks(){
-    this._bookService.getReservedBooks()
-      .subscribe(res=>{
-        this.data=res;
-        this.filter();
-      });
+  avaliablebooks() {
+    this._bookService.getAvaliableBooks().subscribe(res => {
+      this.data = res;
+      this.filter();
+    });
+  }
+
+  reservedbooks() {
+    this._bookService.getReservedBooks().subscribe(res => {
+      this.data = res;
+      this.filter();
+    });
   }
 
   filter(): void {
     let newData: any[] = this.data;
     newData.forEach(element => {
-      if(element.status==1){
-        element.status="Avaliable";
+      if (element.status == 1) {
+        element.status = "Avaliable";
       }
-      if(element.status==0)
-      {
-        element.status="Reserved";
+      if (element.status == 0) {
+        element.status = "Reserved";
       }
     });
 
     let excludedColumns: string[] = this.columns
-    .filter((column: ITdDataTableColumn) => {
-      return ((column.filter === undefined && column.hidden === true) ||
-              (column.filter !== undefined && column.filter === false));
-    }).map((column: ITdDataTableColumn) => {
-      return column.name;
-    });
-    newData = this._dataTableService.filterData(newData, this.searchTerm, true, excludedColumns);
+      .filter((column: ITdDataTableColumn) => {
+        return (
+          (column.filter === undefined && column.hidden === true) ||
+          (column.filter !== undefined && column.filter === false)
+        );
+      })
+      .map((column: ITdDataTableColumn) => {
+        return column.name;
+      });
+    newData = this._dataTableService.filterData(
+      newData,
+      this.searchTerm,
+      true,
+      excludedColumns
+    );
     this.filteredTotal = newData.length;
     this.filteredData = newData;
   }
-
 }

@@ -1,23 +1,21 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from "@angular/core";
 
-import{ BooksComponent } from '../books/books.component';
+import { BooksComponent } from "../books/books.component";
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  selector: "app-dialog",
+  templateUrl: "./dialog.component.html",
+  styleUrls: ["./dialog.component.css"]
 })
 export class DialogComponent implements OnInit {
+  constructor(
+    public dialogRef: MatDialogRef<BooksComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
-
-  constructor(public dialogRef: MatDialogRef<BooksComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onNoSubmit(): void {
     this.dialogRef.close(true);

@@ -1,45 +1,93 @@
 <td-layout>
-    <td-navigation-drawer flex sidenavTitle="Library" logo="assets:teradata" name="Firstname Lastname" email="firstname.lastname@company.com">
-      <mat-nav-list>
-        <ol>
-            <li><a [routerLink]="['/']" > <mat-icon>home</mat-icon> Home</a></li>
-            <li><a [routerLink]="['/books']" ><mat-icon>book</mat-icon>Books</a></li>
-            <li><a [routerLink]="['/addbook']" ><mat-icon>add</mat-icon>Add Books</a></li>
-            <li><a [routerLink]="['/remove']"><mat-icon>delete</mat-icon>Remove book</a></li>
-            <li><a href="#">Reinstate</a></li>
-            <li><a href="#">Feedback</a></li>
-        </ol>
-      </mat-nav-list>
-      
-      <div td-navigation-drawer-menu>
-        <mat-nav-list>
-          <a *ngFor="let item of usermenu" mat-list-item><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
-        </mat-nav-list>
-      </div>
-    </td-navigation-drawer>
-    <td-layout-nav color="accent">
-      <div td-toolbar-content layout="row" layout-align="start center" flex>
-        <button mat-icon-button td-menu-button tdLayoutToggle>
-          <mat-icon>menu</mat-icon>
-        </button>
-        <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata">Teradata</mat-icon>
-        <span [routerLink]="['/']" class="cursor-pointer">Library</span>
-        <span flex></span>
-        <ul id="horizontal">
-          <li><a [routerLink]="['/']" ><mat-icon>home</mat-icon> Home</a></li>
-          <li><a [routerLink]="['books']" routerLinkActive="active"><mat-icon>book</mat-icon>Books</a></li>
-          <li><a [routerLink]="['addbook']" routerLinkActive="active"><mat-icon>add</mat-icon> Add Books</a></li>
-          <li><a [routerLink]="['remove']"routerLinkActive="active"><mat-icon>delete</mat-icon>Remove book</a></li>
-          <li><a href="#" routerLinkActive="active">Reinstate</a></li>
-          <li><a href="#" routerLinkActive="active">Feedback</a></li>
-        </ul>
-      </div>
-      <router-outlet></router-outlet>
-      <td-layout-footer>
-        <div layout="row" layout-align="start center">
-          <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
-        </div>
-      </td-layout-footer>
-    </td-layout-nav>
-  </td-layout>
+  <td-navigation-drawer flex sidenavTitle="Library" logo="assets:teradata" name="Firstname Lastname" email="firstname.lastname@company.com">
+    <mat-nav-list>
+      <ol>
+        <li>
+          <a [routerLink]="['/']">
+            <mat-icon>home</mat-icon> Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/books']" routerLinkActive="active">
+            <mat-icon>book</mat-icon>Books</a>
+        </li>
+        <li>
+          <a [routerLink]="['/addbook']" routerLinkActive="active">
+            <mat-icon>add</mat-icon>Add Books</a>
+        </li>
+        <li>
+          <a [routerLink]="['/remove']" routerLinkActive="active">
+            <mat-icon>delete</mat-icon>Remove book</a>
+        </li>
+        <li>
+          <a href="#" routerLinkActive="active">
+            <mat-icon>restore</mat-icon>Reinstate</a>
+        </li>
+        <li>
+          <a href="#" routerLinkActive="active">
+            <mat-icon>feedback</mat-icon>Feedback</a>
+        </li>
+      </ol>
+    </mat-nav-list>
 
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a *ngFor="let item of usermenu" mat-list-item>
+          <mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav color="accent">
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata">Teradata</mat-icon>
+      <span [routerLink]="['/']" class="cursor-pointer">Library</span>
+      <span flex></span>
+      <ul id="horizontal">
+        <li>
+          <a [routerLink]="['/']">
+            <mat-icon>home</mat-icon>
+            <span class="responsive">Home</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['books']" routerLinkActive="active">
+            <mat-icon>book</mat-icon>
+            <span class="responsive">Books</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['addbook']" routerLinkActive="active">
+            <mat-icon>add</mat-icon>
+            <span class="responsive">Add Book</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['remove']" routerLinkActive="active">
+            <mat-icon>delete</mat-icon>
+            <span class="responsive">Remove book</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" routerLinkActive="active">
+            <mat-icon>restore</mat-icon>
+            <span class="responsive">Reinstate</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" routerLinkActive="active">
+            <mat-icon>feedback</mat-icon>
+            <span class="responsive">Feedback</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <router-outlet></router-outlet>
+    <td-layout-footer>
+      <div layout="row" layout-align="start center">
+        <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
+      </div>
+    </td-layout-footer>
+  </td-layout-nav>
+</td-layout>

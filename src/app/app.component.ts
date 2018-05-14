@@ -1,23 +1,28 @@
-import { Component } from '@angular/core';
-
+import { Component } from "@angular/core";
 
 //for svgicon
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material';
+import { DomSanitizer } from "@angular/platform-browser";
+import { MatIconRegistry } from "@angular/material";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-
 export class AppComponent {
-
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
-        'teradata',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/teradata.svg'));
+      "teradata",
+      sanitizer.bypassSecurityTrustResourceUrl("assets/icons/teradata.svg")
+    );
   }
-  title = 'app';
-  routes = ["Home","Books","AddBooks","Remove Book", "Reinstate", "Feedback"];
+  title = "app";
+  routes = [
+    "Home",
+    "Books",
+    "AddBooks",
+    "Remove Book",
+    "Reinstate",
+    "Feedback"
+  ];
 }
