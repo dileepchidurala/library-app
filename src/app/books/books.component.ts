@@ -62,7 +62,13 @@ export class BooksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.allbooks();
+    if (this.router.url == "/books") {
+      this.allbooks();
+    } else if (this.router.url == "/remove") {
+      this.avaliablebooks();
+    } else {
+      this.reservedbooks();
+    }
     this.filter();
   }
 
@@ -79,17 +85,28 @@ export class BooksComponent implements OnInit {
         width: "350px",
         data: {
           text: "Are you sure you want to reserve this book",
-          status: event.row.status
+          status: event.row.status,
+          book: event.row.book_name
         }
       });
-    }
-
-    if (this.router.url == "/remove") {
+    } else if (this.router.url == "/remove") {
       dialogRef = this.dialog.open(DialogComponent, {
         width: "350px",
         data: {
           text: "Are you sure you want to delete this book",
-          status: event.row.status
+          status: event.row.status,
+          book: event.row.book_name,
+          for: "On_avliable"
+        }
+      });
+    } else {
+      dialogRef = this.dialog.open(DialogComponent, {
+        width: "350px",
+        data: {
+          text: "You want to Reinstate the book",
+          status: event.row.status,
+          book: event.row.book_name,
+          for: "On_reserve"
         }
       });
     }
@@ -102,12 +119,15 @@ export class BooksComponent implements OnInit {
             "Mail will be sent for you to get the book" + event.row.id
           );
           this._bookService.reservationOfBook(event.row.id).subscribe(res => {
-            this.allbooks();
+            this.avaliablebooks();
           });
-        }
-        if (this.router.url == "/remove") {
+        } else if (this.router.url == "/remove") {
           this._bookService.deleteBook(event.row.id).subscribe(res => {
-            this.allbooks();
+            this.avaliablebooks();
+          });
+        } else {
+          this._bookService.reinstateBook(event.row.id).subscribe(res => {
+            this.reservedbooks();
           });
         }
       }

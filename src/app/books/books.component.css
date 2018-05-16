@@ -1,83 +1,83 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body{
-  background: #f2f2f2;
-  font-family: 'Open Sans', sans-serif;
-}
-
-
 body {
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.25;
-  }
-
-.total
-{
-  display: grid;
-  grid-template-rows: 10%,90%;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.25;
 }
 
-.grid
-{
-  display: grid;
-  grid-template-columns: 1fr 13fr 1fr;
-}
-.middle-div{
+.middle-div {
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 25px;
   background-color: rgb(233, 233, 233);
-  border: 2px solid rgb(132, 176, 202);
   border-radius: 10px;
 }
 
-.tabs{
+.tabs {
   background-color: white;
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-  table {
-    border: 1px solid rgb(202, 132, 132);
-    border-collapse: collapse;
-    table-layout: fixed;
-    width: 100%;
-    align-self: center;
-  }
-  table caption {
-    font-size: 1.5em;
-    margin: .5em 0 .75em;
-  }
-  table tr {
-    border: 1px solid #ddd;
-    padding: .35em;
-  }
-  table tr:nth-child(even) {
-    background: hsl(24, 56%, 78%);  
-  }
-  table th,
-  table td {
-    padding: .625em;
-    text-align: left;
-  }
-   th {
-    background: rgb(230, 130, 49);
-    color: #fff;
-    font-size: .85em;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-  table td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  h1{
-      padding-left: 10%;
-      color: rgb(230, 36, 29);
-  }
-  h3{
-    padding-left: 10%;
-    color:rgb(128, 0, 49);
+a {
+  display: block;
+  text-align: center;
+  padding: 15px 10px;
+  text-decoration: none;
 }
 
-.mat-title{
+a:hover:not(.active) {
+  background-color: rgb(137, 142, 204);
+}
+#active {
+  background-color: burlywood;
+}
+
+table {
+  border: 1px solid rgb(202, 132, 132);
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  align-self: center;
+}
+table caption {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+}
+table tr {
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+table tr:nth-child(even) {
+  background: hsl(24, 56%, 78%);
+}
+table th,
+table td {
+  padding: 0.625em;
+  text-align: left;
+}
+th {
+  background: rgb(230, 130, 49);
+  color: #fff;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+h1 {
+  padding-left: 10%;
+  color: rgb(230, 36, 29);
+}
+h3 {
+  padding-left: 10%;
+  color: rgb(128, 0, 49);
+}
+
+.mat-title {
   color: green;
 }
-  

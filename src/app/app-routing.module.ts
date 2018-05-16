@@ -1,26 +1,30 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent } from './home/home.component';
-import { BooksComponent } from './books/books.component';
-import { AddBookComponent } from './add-book/add-book.component';
+import { HomeComponent } from "./home/home.component";
+import { BooksComponent } from "./books/books.component";
+import { AddBookComponent } from "./add-book/add-book.component";
 
 const routes: Routes = [
   {
-    path:'',
-    component:HomeComponent
+    path: "",
+    component: HomeComponent
   },
   {
-    path:'books',
-    component:BooksComponent
+    path: "books",
+    component: BooksComponent
   },
   {
-    path:'addbook',
-    component:AddBookComponent
+    path: "addbook",
+    component: AddBookComponent
   },
   {
-    path:'remove',
-    component:BooksComponent
+    path: "remove",
+    component: BooksComponent
+  },
+  {
+    path: "reinstate",
+    component: BooksComponent
   }
 ];
 
@@ -28,4 +32,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

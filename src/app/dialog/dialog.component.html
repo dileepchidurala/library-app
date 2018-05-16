@@ -1,9 +1,15 @@
 <h1 mat-dialog-title>TIES Library Book Reservation</h1>
 <div mat-dialog-content>
   <p *ngIf="data.status=='Avaliable'">{{data.text}}</p>
-  <p *ngIf="data.status=='Reserved'">The book is already reserved</p>
+  <p *ngIf="data.status=='Reserved'">{{data.text}}</p>
+  <p>{{data.book}}</p>
+  <p *ngIf="data.status=='Reserved'"> is already reserved. So you can't remove it</p>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()" >Cancel</button>
+<div mat-dialog-actions *ngIf="data.for=='On_avliable'">
+  <button mat-button (click)="onNoClick()">Cancel</button>
   <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Avaliable'">Yes</button>
+</div>
+<div mat-dialog-actions *ngIf="data.for=='On_reserve'">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Reserved'">Yes</button>
 </div>
