@@ -3,27 +3,27 @@
     <mat-nav-list>
       <ol>
         <li>
-          <a [routerLink]="['/']">
+          <a [routerLink]="['/']" tdLayoutClose>
             <mat-icon>home</mat-icon> Home</a>
         </li>
         <li>
-          <a [routerLink]="['/books']" routerLinkActive="active">
+          <a [routerLink]="['/books']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>book</mat-icon>Books</a>
         </li>
         <li>
-          <a [routerLink]="['/addbook']" routerLinkActive="active">
+          <a [routerLink]="['/addbook']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>add</mat-icon>Add Books</a>
         </li>
         <li>
-          <a [routerLink]="['/remove']" routerLinkActive="active">
+          <a [routerLink]="['/remove']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>delete</mat-icon>Remove book</a>
         </li>
         <li>
-          <a [routerLink]="['reinstate']" routerLinkActive="active">
+          <a [routerLink]="['reinstate']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>restore</mat-icon>Reinstate</a>
         </li>
         <li>
-          <a href="#" routerLinkActive="active">
+          <a href="#" routerLinkActive="active" tdLayoutClose>
             <mat-icon>feedback</mat-icon>Feedback</a>
         </li>
       </ol>
@@ -41,7 +41,9 @@
       <button mat-icon-button td-menu-button tdLayoutToggle>
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata">Teradata</mat-icon>
+      <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata">
+        <b>Teradata</b>
+      </mat-icon>
       <span [routerLink]="['/']" class="cursor-pointer">Library</span>
       <span flex></span>
       <ul id="horizontal">

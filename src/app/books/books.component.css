@@ -34,6 +34,21 @@ a:hover:not(.active) {
   background-color: burlywood;
 }
 
+h1 {
+  padding-left: 10%;
+  color: rgb(29, 166, 230);
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+h3 {
+  padding-left: 10%;
+  color: rgb(128, 0, 49);
+}
+
+.mat-title {
+  color: green;
+}
+
+/* 
 table {
   border: 1px solid rgb(202, 132, 132);
   border-collapse: collapse;
@@ -60,7 +75,7 @@ table td {
 th {
   background: rgb(230, 130, 49);
   color: #fff;
-  font-size: 0.85em;
+  font-size: 1.85em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -68,16 +83,4 @@ table td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-h1 {
-  padding-left: 10%;
-  color: rgb(230, 36, 29);
-}
-h3 {
-  padding-left: 10%;
-  color: rgb(128, 0, 49);
-}
-
-.mat-title {
-  color: green;
-}
+} */
