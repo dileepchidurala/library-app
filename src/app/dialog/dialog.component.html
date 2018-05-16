@@ -1,15 +1,26 @@
 <h1 mat-dialog-title>TIES Library Book Reservation</h1>
-<div mat-dialog-content>
-  <p *ngIf="data.status=='Avaliable'">{{data.text}}</p>
-  <p *ngIf="data.status=='Reserved'">{{data.text}}</p>
-  <p>{{data.book}}</p>
-  <p *ngIf="data.status=='Reserved'"> is already reserved. So you can't remove it</p>
+<div *ngIf="data.for=='On_avliable'">
+  <div mat-dialog-content>
+    <p *ngIf="data.status=='Avaliable'">{{data.text}}</p>
+    <p>{{data.book}}
+      <span *ngIf="data.status=='Reserved'">is already reserved.</span>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Avaliable'">Yes</button>
+  </div>
 </div>
-<div mat-dialog-actions *ngIf="data.for=='On_avliable'">
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Avaliable'">Yes</button>
-</div>
-<div mat-dialog-actions *ngIf="data.for=='On_reserve'">
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Reserved'">Yes</button>
+
+<div *ngIf="data.for=='On_reserve'">
+  <div mat-dialog-content>
+    <p *ngIf="data.status=='Reserved'">{{data.text}}</p>
+    <p>{{data.book}}
+      <span *ngIf="data.status=='Avaliable'">is already Avliable. So you can't Reinstate it</span>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Reserved'">Yes</button>
+  </div>
 </div>

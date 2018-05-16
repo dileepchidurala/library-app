@@ -48,7 +48,9 @@ export class BooksComponent implements OnInit {
   //   { name: 'balance', label: 'Balance', numeric: true },
   // ];
   data: Array<any> = [];
-
+  style_all: any;
+  style_avaliable: any;
+  style_reserved: any;
   filteredData: any[] = this.data;
   filteredTotal: number = this.data.length;
 
@@ -63,7 +65,7 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     if (this.router.url == "/books") {
-      this.allbooks();
+      this.avaliablebooks();
     } else if (this.router.url == "/remove") {
       this.avaliablebooks();
     } else {
@@ -86,7 +88,8 @@ export class BooksComponent implements OnInit {
         data: {
           text: "Are you sure you want to reserve this book",
           status: event.row.status,
-          book: event.row.book_name
+          book: event.row.book_name,
+          for: "On_avliable"
         }
       });
     } else if (this.router.url == "/remove") {
@@ -139,6 +142,11 @@ export class BooksComponent implements OnInit {
       this.data = res;
       this.filter();
     });
+    this.style_all = {
+      "background-color": "lightseagreen"
+    };
+    this.style_avaliable = null;
+    this.style_reserved = null;
   }
 
   avaliablebooks() {
@@ -146,6 +154,11 @@ export class BooksComponent implements OnInit {
       this.data = res;
       this.filter();
     });
+    this.style_all = null;
+    this.style_avaliable = {
+      "background-color": "lightseagreen"
+    };
+    this.style_reserved = null;
   }
 
   reservedbooks() {
@@ -153,6 +166,11 @@ export class BooksComponent implements OnInit {
       this.data = res;
       this.filter();
     });
+    this.style_all = null;
+    this.style_avaliable = null;
+    this.style_reserved = {
+      "background-color": "lightseagreen"
+    };
   }
 
   filter(): void {
