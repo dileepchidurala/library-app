@@ -37,9 +37,13 @@
     </td-search-box>
   </div>
   <mat-divider></mat-divider>
+
+
   <td-data-table style="background-color: white; " #dataTable [data]="filteredData" [columns]="columns" [clickable]="true"
     (rowClick)="showAlert($event)">
+
   </td-data-table>
+
   <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
     <h3>No results to display.</h3>
   </div>

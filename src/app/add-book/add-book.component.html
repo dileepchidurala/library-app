@@ -4,21 +4,23 @@
 
 
     <mat-form-field>
-        <input  matInput placeholder="Book Id" type="text" name="book Id" [formControl]="bookFrm.controls['book_id']" formControlName="book_id">
+        <input matInput placeholder="Book Id" type="text" name="book Id" [formControl]="bookFrm.controls['book_id']" formControlName="book_id">
     </mat-form-field>
     <!-- <div class="alert" *ngIf="!bookFrm.controls['id'].valid && bookFrm.controls['id'].touched">
     You must specify a title that's at least 10 characters long.
     </div> -->
 
     <mat-form-field>
-    <textarea matInput placeholder="Book Name" name="book_name" id="book_name" required [formControl]="bookFrm.controls['book_name']" formControlName="book_name"></textarea>
+        <textarea matInput placeholder="Book Name" name="book_name" id="book_name" required [formControl]="bookFrm.controls['book_name']"
+            formControlName="book_name"></textarea>
     </mat-form-field>
     <!-- <div class="alert" *ngIf="!bookFrm.controls['name'].valid && bookFrm.controls['name'].touched">
     You must specify content that's at least 10 characters long.
     </div> -->
 
     <mat-form-field>
-    <textarea matInput placeholder="description" name="description" id="description" required [formControl]="bookFrm.controls['description']" formControlName="description"></textarea>
+        <textarea matInput placeholder="description" name="description" id="description" required [formControl]="bookFrm.controls['description']"
+            formControlName="description"></textarea>
     </mat-form-field>
     <!-- <div class="alert" *ngIf="!bookFrm.controls['deartment'].valid && bookFrm.controls['deartment'].touched">
     You must specify content that's at least 10 characters long.
@@ -29,9 +31,10 @@
     </mat-form-field>
 
     <mat-form-field>
-            <textarea matInput placeholder="publication" name="publication" id="publication" required [formControl]="bookFrm.controls['publication']" formControlName="publication"></textarea>
+        <textarea matInput placeholder="publication" name="publication" id="publication" required [formControl]="bookFrm.controls['publication']"
+            formControlName="publication"></textarea>
     </mat-form-field>
-    
+
     <mat-form-field>
         <textarea matInput placeholder="price" name="price" id="price" required [formControl]="bookFrm.controls['price']" formControlName="price"></textarea>
     </mat-form-field>

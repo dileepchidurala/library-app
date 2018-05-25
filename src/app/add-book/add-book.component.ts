@@ -28,18 +28,25 @@ export class AddBookComponent implements OnInit {
 
   ngOnInit() {
     this.bookFrm = this.fb.group({
-      book_id: [null, Validators.compose([Validators.required])],
+      book_id: [
+        ,
+        Validators.compose([Validators.required, Validators.pattern("[0-9]*")])
+      ],
       book_name: [
-        null,
-        Validators.compose([Validators.required, Validators.minLength(3)])
+        ,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(4)
+        ])
       ],
       description: [null],
       author: [
-        null,
+        ,
         Validators.compose([Validators.required, Validators.minLength(3)])
       ],
-      publication: [null],
-      price: [0, Validators.compose([])]
+      publication: [, Validators.compose([Validators.required])],
+      price: [0, Validators.compose([Validators.pattern("[0-9]*")])]
       // 'status':[true],
     });
   }

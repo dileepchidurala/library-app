@@ -63,13 +63,25 @@ router.post("/addbook", (req, res) => {
 });
 
 router.get("/reservation/:id", (req, res) => {
-  var sql_query = "update library.books set status=0 where id=" + req.params.id;
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
-      console.log(err);
+  db.lib_connection.query(
+    "select * from library.books where id=" + req.params.id,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else if (result[0].status) {
+        var sql_query =
+          "update library.books set status=0 where id=" + req.params.id;
+        db.lib_connection.query(sql_query, (err, result) => {
+          if (err) {
+            console.log(err);
+          }
+          res.send(result);
+        });
+      } else {
+        console.log("Figure out how to send error to angular");
+      }
     }
-    res.send(result);
-  });
+  );
 });
 
 router.get("/reinstate/:id", (req, res) => {
