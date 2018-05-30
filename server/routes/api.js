@@ -2,15 +2,10 @@ const express = require("express");
 var router = express.Router();
 var db = require("../models/config");
 
-const app = express();
-
-//making connection with book database
-
-router.get("/books", (req, res) => {
-  db.lib_connection_test
+var router_function = (req, res, query) => {
+  db.lib_connection
     .then(conn => {
-      var sql_query = "select * from library.books";
-      var results = conn.query(sql_query);
+      var results = conn.query(query);
       return results;
     })
     .then(rows => {
@@ -19,34 +14,18 @@ router.get("/books", (req, res) => {
     .catch(err => {
       console.log(err);
     });
-  // db.lib_connection.query(sql_query, (err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   res.send(result);
-  // });
+};
+
+router.get("/books", (req, res) => {
+  router_function(req, res, "select * from library.books");
 });
 
-db.lib_connection.connect();
-
 router.get("/avaliable_books", (req, res) => {
-  var sql_query = "select * from library.books where status=1";
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    res.send(result);
-  });
+  router_function(req, res, "select * from library.books where status=1");
 });
 
 router.get("/reserved_books", (req, res) => {
-  var sql_query = "select * from library.books where status=0";
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    res.send(result);
-  });
+  router_function(req, res, "select * from library.books where status=0");
 });
 
 router.post("/addbook", (req, res) => {
@@ -66,54 +45,39 @@ router.post("/addbook", (req, res) => {
     "," +
     req.body.status +
     ");";
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    res.send(result);
-  });
+  router_function(req, res, sql_query);
 });
 
 router.get("/reservation/:id", (req, res) => {
-  db.lib_connection.query(
-    "select * from library.books where id=" + req.params.id,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else if (result[0].status) {
+  db.lib_connection
+    .then(conn => {
+      var result = conn.query(
+        "select * from library.books where id=" + req.params.id
+      );
+      return result;
+    })
+    .then(record => {
+      if (record[0].status) {
         var sql_query =
           "update library.books set status=0 where id=" + req.params.id;
-        db.lib_connection.query(sql_query, (err, result) => {
-          if (err) {
-            console.log(err);
-          }
-          res.send(result);
-        });
+        router_function(req, res, sql_query);
       } else {
-        console.log("Figure out how to send error to angular");
+        throw "Sorry This book is already reserved,ohhh you are few seconds late";
       }
-    }
-  );
+    })
+    .catch(error => {
+      console.error(error);
+    });
 });
 
 router.get("/reinstate/:id", (req, res) => {
   var sql_query = "update library.books set status=1 where id=" + req.params.id;
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    res.send(result);
-  });
+  router_function(req, res, sql_query);
 });
 
 router.delete("/delete/:id", (req, res) => {
   var sql_query = "delete from library.books where id=" + req.params.id;
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    res.send(result);
-  });
+  router_function(req, res, sql_query);
 });
 
 module.exports = router;
