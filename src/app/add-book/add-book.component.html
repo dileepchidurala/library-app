@@ -6,9 +6,9 @@
     <mat-form-field>
         <input matInput placeholder="Book Id" type="text" name="book Id" [formControl]="bookFrm.controls['book_id']" formControlName="book_id">
     </mat-form-field>
-    <!-- <div class="alert" *ngIf="!bookFrm.controls['id'].valid && bookFrm.controls['id'].touched">
-    You must specify a title that's at least 10 characters long.
-    </div> -->
+    <!-- <span class="alert" *ngIf="!bookFrm.controls['id'].valid && bookFrm.controls['id'].touched">
+        You must specify a title that's at least 10 characters long.
+    </span> -->
 
     <mat-form-field>
         <textarea matInput placeholder="Book Name" name="book_name" id="book_name" required [formControl]="bookFrm.controls['book_name']"

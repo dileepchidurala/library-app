@@ -5,17 +5,29 @@ var db = require("../models/config");
 const app = express();
 
 //making connection with book database
-db.lib_connection.connect();
 
 router.get("/books", (req, res) => {
-  var sql_query = "select * from library.books";
-  db.lib_connection.query(sql_query, (err, result) => {
-    if (err) {
+  db.lib_connection_test
+    .then(conn => {
+      var sql_query = "select * from library.books";
+      var results = conn.query(sql_query);
+      return results;
+    })
+    .then(rows => {
+      res.send(rows);
+    })
+    .catch(err => {
       console.log(err);
-    }
-    res.send(result);
-  });
+    });
+  // db.lib_connection.query(sql_query, (err, result) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   res.send(result);
+  // });
 });
+
+db.lib_connection.connect();
 
 router.get("/avaliable_books", (req, res) => {
   var sql_query = "select * from library.books where status=1";
