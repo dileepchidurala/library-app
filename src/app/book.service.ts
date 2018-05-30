@@ -28,6 +28,12 @@ export class BookService {
       .map(result => (this.result = result.json()));
   }
 
+  getNotAvaliableBooks() {
+    return this._http
+      .get("/api/notavaliable_books")
+      .map(result => (this.result = result.json()));
+  }
+
   insertbook(post: Book) {
     let headers = new Headers({ "content-type": "application/json" });
     let options = new RequestOptions({ headers: headers });
@@ -45,6 +51,12 @@ export class BookService {
   reinstateBook(id) {
     return this._http
       .get("/api/reinstate/" + id)
+      .map(result => (this.result = result.json()));
+  }
+
+  notAvaliableBook(id) {
+    return this._http
+      .get("/api/notavaliable/" + id)
       .map(result => (this.result = result.json()));
   }
 

@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: "reinstate",
     component: BooksComponent
+  },
+  {
+    path: "notavaliable",
+    component: BooksComponent
   }
 ];
 

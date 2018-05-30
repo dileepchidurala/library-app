@@ -35,7 +35,7 @@ export class BooksComponent implements OnInit {
     { name: "author", label: "Author", width: 200 },
     { name: "publication", label: "Publication" },
     { name: "price", label: "Price" },
-    { name: "status", label: "Status" }
+    { name: "status", label: "Status", width: 150 }
   ];
 
   books: Array<Book> = [];
@@ -50,6 +50,7 @@ export class BooksComponent implements OnInit {
   data: Array<any> = [];
   style_all: any;
   style_avaliable: any;
+  style_notAvaliable: any;
   style_reserved: any;
   filteredData: any[] = this.data;
   filteredTotal: number = this.data.length;
@@ -68,8 +69,10 @@ export class BooksComponent implements OnInit {
       this.avaliablebooks();
     } else if (this.router.url == "/remove") {
       this.avaliablebooks();
-    } else {
+    } else if (this.router.url == "/reinstate") {
       this.reservedbooks();
+    } else {
+      this.notAvaliablebooks();
     }
     this.filter();
   }
@@ -128,6 +131,10 @@ export class BooksComponent implements OnInit {
           this._bookService.deleteBook(event.row.id).subscribe(res => {
             this.avaliablebooks();
           });
+        } else if (this.router.url == "/notavaliable") {
+          this._bookService.notAvaliableBook(event.row.id).subscribe(res => {
+            this.notAvaliablebooks();
+          });
         } else {
           this._bookService.reinstateBook(event.row.id).subscribe(res => {
             this.reservedbooks();
@@ -147,6 +154,7 @@ export class BooksComponent implements OnInit {
     };
     this.style_avaliable = null;
     this.style_reserved = null;
+    this.style_notAvaliable = null;
   }
 
   avaliablebooks() {
@@ -159,6 +167,7 @@ export class BooksComponent implements OnInit {
       "background-color": "lightseagreen"
     };
     this.style_reserved = null;
+    this.style_notAvaliable = null;
   }
 
   reservedbooks() {
@@ -171,16 +180,33 @@ export class BooksComponent implements OnInit {
     this.style_reserved = {
       "background-color": "lightseagreen"
     };
+    this.style_notAvaliable = null;
+  }
+
+  notAvaliablebooks() {
+    this._bookService.getNotAvaliableBooks().subscribe(res => {
+      this.data = res;
+      this.filter();
+    });
+    this.style_all = null;
+    this.style_avaliable = null;
+    this.style_reserved = null;
+    this.style_notAvaliable = {
+      "background-color": "lightseagreen"
+    };
   }
 
   filter(): void {
     let newData: any[] = this.data;
     newData.forEach(element => {
+      if (element.status == 0) {
+        element.status = "Reserved";
+      }
       if (element.status == 1) {
         element.status = "Avaliable";
       }
-      if (element.status == 0) {
-        element.status = "Reserved";
+      if (element.status == 2) {
+        element.status = "Not Avaliable";
       }
     });
 

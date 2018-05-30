@@ -20,12 +20,16 @@ router.get("/books", (req, res) => {
   router_function(req, res, "select * from library.books");
 });
 
+router.get("/reserved_books", (req, res) => {
+  router_function(req, res, "select * from library.books where status=0");
+});
+
 router.get("/avaliable_books", (req, res) => {
   router_function(req, res, "select * from library.books where status=1");
 });
 
-router.get("/reserved_books", (req, res) => {
-  router_function(req, res, "select * from library.books where status=0");
+router.get("/notavaliable_books", (req, res) => {
+  router_function(req, res, "select * from library.books where status=2");
 });
 
 router.post("/addbook", (req, res) => {
@@ -57,10 +61,14 @@ router.get("/reservation/:id", (req, res) => {
       return result;
     })
     .then(record => {
-      if (record[0].status) {
-        var sql_query =
-          "update library.books set status=0 where id=" + req.params.id;
-        router_function(req, res, sql_query);
+      if (!record.length) {
+        throw "Sorry this book was Removed recently";
+      } else if (record[0].status) {
+        router_function(
+          req,
+          res,
+          "update library.books set status=0 where id=" + req.params.id
+        );
       } else {
         throw "Sorry This book is already reserved,ohhh you are few seconds late";
       }
@@ -72,6 +80,11 @@ router.get("/reservation/:id", (req, res) => {
 
 router.get("/reinstate/:id", (req, res) => {
   var sql_query = "update library.books set status=1 where id=" + req.params.id;
+  router_function(req, res, sql_query);
+});
+
+router.get("/notavaliable/:id", (req, res) => {
+  var sql_query = "update library.books set status=2 where id=" + req.params.id;
   router_function(req, res, sql_query);
 });
 
