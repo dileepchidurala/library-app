@@ -23,6 +23,7 @@ import { BooksComponent } from './books/books.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { AdminSectionComponent } from './admin-section/admin-section.component';
+import { MiddleComponent } from './middle/middle.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AdminSectionComponent } from './admin-section/admin-section.component';
     AddBookComponent,
     DialogComponent,
     AdminSectionComponent,
+    MiddleComponent,
   ],
   imports: [
     BrowserModule,

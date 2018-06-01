@@ -1,0 +1,26 @@
+<h1>Need to get this from child component</h1>
+<div class="middle-div">
+  <div class="tabs">
+    <div>
+      <a (click)="allbooks()" [ngStyle]="style_all">
+        <span class="responsive">All Books</span>
+      </a>
+    </div>
+    <div>
+      <a (click)="avaliablebooks()" [ngStyle]="style_avaliable">
+        <span class="responsive">Avaliable Books</span>
+      </a>
+    </div>
+    <div>
+      <a (click)="reservedbooks()" [ngStyle]="style_reserved">
+        <span class="responsive">Reserved Books</span>
+      </a>
+    </div>
+    <div>
+      <a (click)="notAvaliablebooks()" [ngStyle]="style_notAvaliable">
+        <span class="responsive">Not Avaliable Books </span>
+      </a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

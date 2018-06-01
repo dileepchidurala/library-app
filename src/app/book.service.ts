@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
@@ -9,6 +10,8 @@ import { Book } from "./book";
 @Injectable()
 export class BookService {
   result: any;
+  data = new BehaviorSubject<any>([]);
+  cast = this.data.asObservable();
 
   constructor(private _http: Http) {}
 
@@ -72,5 +75,9 @@ export class BookService {
   _errorHandler(error) {
     console.error(error._body);
     return Observable.throw(error._body || "Server Error");
+  }
+
+  editData(newdata) {
+    this.data.next(newdata);
   }
 }
