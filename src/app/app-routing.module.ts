@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { BooksComponent } from "./books/books.component";
 import { AddBookComponent } from "./add-book/add-book.component";
+import { AdminSectionComponent } from "./admin-section/admin-section.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: "notavaliable",
     component: BooksComponent
+  },
+  {
+    path: "admin",
+    component: AdminSectionComponent
   }
 ];
 

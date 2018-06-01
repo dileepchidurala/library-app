@@ -54,6 +54,7 @@ export class BooksComponent implements OnInit {
   style_reserved: any;
   filteredData: any[] = this.data;
   filteredTotal: number = this.data.length;
+  error_msg: string;
 
   searchTerm: string = "";
   res: string;
@@ -124,9 +125,14 @@ export class BooksComponent implements OnInit {
           console.log(
             "Mail will be sent for you to get the book" + event.row.id
           );
-          this._bookService.reservationOfBook(event.row.id).subscribe(res => {
-            this.avaliablebooks();
-          });
+          this._bookService.reservationOfBook(event.row.id).subscribe(
+            res => {
+              this.avaliablebooks();
+            },
+            error => {
+              this.error_msg = error;
+            }
+          );
         } else if (this.router.url == "/remove") {
           this._bookService.deleteBook(event.row.id).subscribe(res => {
             this.avaliablebooks();

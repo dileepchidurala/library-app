@@ -1,8 +1,8 @@
 <h1>
-  TIES Library Books
+  TIES Library Books Admin Section
 </h1>
 
-<h2>{{error_msg}}</h2>
+
 <div class="middle-div">
   <div class="tabs">
     <div>
@@ -41,16 +41,30 @@
       flex>
     </td-search-box>
   </div>
-  <mat-divider></mat-divider>
 
 
-  <td-data-table style="background-color: white; " #dataTable [data]="filteredData" [columns]="columns" [clickable]="true"
-    (rowClick)="showAlert($event)">
 
-  </td-data-table>
-
-  <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
-    <h3>No results to display.</h3>
-  </div>
-
+  <table td-data-table>
+    <thead>
+      <tr td-data-table-column-row>
+        <th td-data-table-column *ngFor="let column of columns" [numeric]="column.numeric">
+          {{column.label}}
+        </th>
+        <th td-data-table-column>
+          <mat-icon>comment</mat-icon>
+          <span>Comments</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr td-data-table-row *ngFor="let row of books">
+        <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+          {{column.format ? column.format(row[column.name]) : row[column.name]}}
+        </td>
+        <td td-data-table-cell (click)="openPrompt(row, 'comments')">
+          <button mat-button [class.mat-accent]="!row['comments']">{{row['comments'] || 'Add Comment'}}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

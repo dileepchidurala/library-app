@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions } from "@angular/http";
+import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
 
 import { Book } from "./book";
 
@@ -45,7 +47,8 @@ export class BookService {
   reservationOfBook(id) {
     return this._http
       .get("/api/reservation/" + id)
-      .map(result => (this.result = result.json()));
+      .map(result => (this.result = result.json()))
+      .catch(this._errorHandler);
   }
 
   reinstateBook(id) {
@@ -64,5 +67,10 @@ export class BookService {
     return this._http
       .delete("/api/delete/" + id)
       .map(result => (this.result = result));
+  }
+
+  _errorHandler(error) {
+    console.error(error._body);
+    return Observable.throw(error._body || "Server Error");
   }
 }

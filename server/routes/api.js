@@ -13,6 +13,7 @@ var router_function = (req, res, query) => {
     })
     .catch(err => {
       console.log(err);
+      res.status(500).send(error);
     });
 };
 
@@ -75,6 +76,7 @@ router.get("/reservation/:id", (req, res) => {
     })
     .catch(error => {
       console.error(error);
+      res.status(500).send(error);
     });
 });
 
