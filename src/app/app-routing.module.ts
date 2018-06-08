@@ -1,10 +1,11 @@
-import { NgModule } from "@angular/core";
+import { NgModule, Component } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { HomeComponent } from "./home/home.component";
 import { BooksComponent } from "./books/books.component";
 import { AddBookComponent } from "./add-book/add-book.component";
 import { AdminSectionComponent } from "./admin-section/admin-section.component";
+import { MiddleComponent } from "./middle/middle.component";
 
 const routes: Routes = [
   {
@@ -12,28 +13,38 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "books",
-    component: BooksComponent
+    path: "middle",
+    component: MiddleComponent,
+    children: [
+      {
+        path: "books",
+        component: BooksComponent
+      },
+      {
+        path: "remove",
+        component: BooksComponent
+      },
+      {
+        path: "reinstate",
+        component: BooksComponent
+      },
+      {
+        path: "notavaliable",
+        component: BooksComponent
+      },
+      {
+        path: "admin",
+        component: AdminSectionComponent
+      }
+    ]
   },
   {
     path: "addbook",
     component: AddBookComponent
   },
   {
-    path: "remove",
-    component: BooksComponent
-  },
-  {
-    path: "reinstate",
-    component: BooksComponent
-  },
-  {
-    path: "notavaliable",
-    component: BooksComponent
-  },
-  {
-    path: "admin",
-    component: AdminSectionComponent
+    path: "**",
+    component: HomeComponent
   }
 ];
 

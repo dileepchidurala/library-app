@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 //for svgicon
 import { DomSanitizer } from "@angular/platform-browser";
@@ -10,7 +11,11 @@ import { MatIconRegistry } from "@angular/material";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private router: Router
+  ) {
     iconRegistry.addSvgIcon(
       "teradata",
       sanitizer.bypassSecurityTrustResourceUrl("assets/icons/teradata.svg")

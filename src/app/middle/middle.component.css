@@ -40,7 +40,8 @@ h1 {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 h2 {
-  color: red;
+  padding-left: 10%;
+  color: rgb(111, 103, 223);
   float: center;
 }
 h3 {

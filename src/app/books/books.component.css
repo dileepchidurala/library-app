@@ -5,53 +5,6 @@ body {
   line-height: 1.25;
 }
 
-.middle-div {
-  width: 90%;
-  margin: auto;
-  padding-bottom: 25px;
-  background-color: rgb(233, 233, 233);
-  border-radius: 10px;
-}
-
-.tabs {
-  background-color: white;
-  border-radius: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-a {
-  display: block;
-  text-align: center;
-  padding: 15px 10px;
-  text-decoration: none;
-}
-
-a:hover:not(.active) {
-  background-color: rgb(137, 142, 204);
-}
-#active {
-  background-color: burlywood;
-}
-
-h1 {
-  padding-left: 10%;
-  color: rgb(29, 166, 230);
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-h2 {
-  color: red;
-  float: center;
-}
-h3 {
-  padding-left: 10%;
-  color: rgb(128, 0, 49);
-}
-
-.mat-title {
-  color: green;
-}
-
 /*
 table {
   border: 1px solid rgb(202, 132, 132);

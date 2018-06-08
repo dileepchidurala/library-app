@@ -1,56 +1,22 @@
-<h1>
-  TIES Library Books
-</h1>
+<div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm" style="background-color: orange">
+  <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+    <span class="mat-title">TIES Library Books</span>
+    <span class="mat-title" *ngIf="router.url=='/books'">-Reserve Books</span>
+    <span class="mat-title" *ngIf="router.url=='/remove'">-Removing Books</span>
+    <span class="mat-title" *ngIf="router.url=='/reinstate'">-Reinstate Books</span>
+  </span>
+  <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+  </span>
+  <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)"
+    flex>
+  </td-search-box>
+</div>
 
-<h2>{{error_msg}}</h2>
-<div class="middle-div">
-  <div class="tabs">
-    <div>
-      <a (click)="allbooks()" [ngStyle]="style_all">
-        <span class="responsive">All Books</span>
-      </a>
-    </div>
-    <div>
-      <a (click)="avaliablebooks()" [ngStyle]="style_avaliable">
-        <span class="responsive">Avaliable Books</span>
-      </a>
-    </div>
-    <div>
-      <a (click)="reservedbooks()" [ngStyle]="style_reserved">
-        <span class="responsive">Reserved Books</span>
-      </a>
-    </div>
-    <div>
-      <a (click)="notAvaliablebooks()" [ngStyle]="style_notAvaliable">
-        <span class="responsive">Not Avaliable Books </span>
-      </a>
-    </div>
-  </div>
+<td-data-table style="background-color: white; " #dataTable [data]="filteredData" [columns]="columns" [clickable]="true"
+  (rowClick)="showAlert($event)">
 
+</td-data-table>
 
-  <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm" style="background-color: orange">
-    <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
-      <span class="mat-title">TIES Library Books</span>
-      <span class="mat-title" *ngIf="router.url=='/books'">-Reserve Books</span>
-      <span class="mat-title" *ngIf="router.url=='/remove'">-Removing Books</span>
-      <span class="mat-title" *ngIf="router.url=='/reinstate'">-Reinstate Books</span>
-    </span>
-    <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
-    </span>
-    <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)"
-      flex>
-    </td-search-box>
-  </div>
-  <mat-divider></mat-divider>
-
-
-  <td-data-table style="background-color: white; " #dataTable [data]="filteredData" [columns]="columns" [clickable]="true"
-    (rowClick)="showAlert($event)">
-
-  </td-data-table>
-
-  <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
-    <h3>No results to display.</h3>
-  </div>
-
+<div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+  <h3>No results to display.</h3>
 </div>

@@ -13,6 +13,10 @@ export class BookService {
   data = new BehaviorSubject<any>([]);
   cast = this.data.asObservable();
 
+  //For child component of middle to know which tab is clicked avaliable,reserved,allbooks
+  state = new BehaviorSubject<any>([]);
+  cast_state = this.state.asObservable();
+
   constructor(private _http: Http) {}
 
   getAllBooks() {
@@ -79,5 +83,9 @@ export class BookService {
 
   editData(newdata) {
     this.data.next(newdata);
+  }
+
+  editstate(newstate) {
+    this.state.next(newstate);
   }
 }

@@ -1,5 +1,16 @@
-<h1>Need to get this from child component</h1>
-<div class="middle-div">
+<h1>
+  TIES Library Books
+</h1>
+
+<h2 *ngIf="router.url == '/middle/books'">
+  Reserve a book Today click on the book to make a reservation
+</h2>
+
+<h2 *ngIf="router.url == '/middle/admin'">
+  Admin Page
+</h2>
+
+<div class="middle-div" [ngStyle]="style_width">
   <div class="tabs">
     <div>
       <a (click)="allbooks()" [ngStyle]="style_all">
@@ -22,5 +33,6 @@
       </a>
     </div>
   </div>
+
   <router-outlet></router-outlet>
 </div>

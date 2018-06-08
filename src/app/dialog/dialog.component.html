@@ -1,18 +1,19 @@
 <h1 mat-dialog-title>TIES Library Book Reservation</h1>
-<div *ngIf="data.for=='On_avliable'">
-  <div mat-dialog-content>
-    <p *ngIf="data.status=='Avaliable'">{{data.text}}</p>
-    <p>{{data.book}}
-      <span *ngIf="data.status=='Reserved'">is already reserved.</span>
-    </p>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Avaliable'">Yes</button>
-  </div>
+<!-- <div *ngIf="data.for=='On_avliable'"> -->
+<div mat-dialog-content>
+  <p *ngIf="data.status=='Avaliable'">{{data.text}}</p>
+  <p>{{data.book}}
+    <span *ngIf="data.status=='Reserved'">is already reserved.</span>
+    <span *ngIf="data.status=='Not Avaliable'">is not Avaliable for now.</span>
+  </p>
 </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Avaliable'">Yes</button>
+</div>
+<!-- </div> -->
 
-<div *ngIf="data.for=='On_reserve'">
+<!-- <div *ngIf="data.for=='On_reserve'">
   <div mat-dialog-content>
     <p *ngIf="data.status=='Reserved'">{{data.text}}</p>
     <p>{{data.book}}
@@ -23,4 +24,4 @@
     <button mat-button (click)="onNoClick()">Cancel</button>
     <button mat-button (click)="onNoSubmit()" cdkFocusInitial *ngIf="data.status=='Reserved'">Yes</button>
   </div>
-</div>
+</div> -->

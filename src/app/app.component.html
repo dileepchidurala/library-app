@@ -7,25 +7,21 @@
             <mat-icon>home</mat-icon> Home</a>
         </li>
         <li>
-          <a [routerLink]="['/books']" routerLinkActive="active" tdLayoutClose>
+          <a [routerLink]="['/middle/books']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>book</mat-icon>Books</a>
         </li>
-        <li>
-          <a [routerLink]="['/addbook']" routerLinkActive="active" tdLayoutClose>
-            <mat-icon>add</mat-icon>Add Books</a>
-        </li>
-        <li>
-          <a [routerLink]="['/remove']" routerLinkActive="active" tdLayoutClose>
+        <!-- <li>
+          <a [routerLink]="['/middle//remove']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>delete</mat-icon>Remove book</a>
         </li>
         <li>
-          <a [routerLink]="['reinstate']" routerLinkActive="active" tdLayoutClose>
+          <a [routerLink]="['/middle/reinstate']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>restore</mat-icon>Reinstate</a>
         </li>
         <li>
-          <a [routerLink]="['notavaliable']" routerLinkActive="active" tdLayoutClose>
+          <a [routerLink]="['/middle/notavaliable']" routerLinkActive="active" tdLayoutClose>
             <mat-icon>block</mat-icon>Not Avaliable</a>
-        </li>
+        </li> -->
       </ol>
     </mat-nav-list>
 
@@ -33,7 +29,16 @@
       <mat-nav-list>
         <ol>
           <li>
-            <a [routerLink]="['admin']" routerLinkActive="active" tdLayoutClose>Admin Section</a>
+            <a [routerLink]="['/middle/admin']" routerLinkActive="active" tdLayoutClose>
+              <mat-icon>account_circle</mat-icon>
+              Admin Section
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/addbook']" routerLinkActive="active" tdLayoutClose>
+              <mat-icon>add</mat-icon>
+              Add Books
+            </a>
           </li>
         </ol>
         <!-- <a *ngFor="let item of usermenu" mat-list-item>
@@ -61,18 +66,24 @@
           </a>
         </li>
         <li>
-          <a [routerLink]="['books']" routerLinkActive="active">
+          <a [routerLink]="['/middle/books']" routerLinkActive="active">
             <mat-icon>book</mat-icon>
             <span class="responsive">Books</span>
           </a>
         </li>
-        <li>
+        <li *ngIf="router.url=='/middle/admin'">
           <a [routerLink]="['addbook']" routerLinkActive="active">
             <mat-icon>add</mat-icon>
             <span class="responsive">Add Book</span>
           </a>
         </li>
-        <li>
+        <li *ngIf="router.url=='/addbook'">
+          <a [routerLink]="['middle/admin']" routerLinkActive="active">
+            <mat-icon>account_circle</mat-icon>
+            <span class="responsive">Admin</span>
+          </a>
+        </li>
+        <!--<li>
           <a [routerLink]="['remove']" routerLinkActive="active">
             <mat-icon>delete</mat-icon>
             <span class="responsive">Remove book</span>
@@ -89,10 +100,10 @@
             <mat-icon>block</mat-icon>
             <span class="responsive">Not Avaliable</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
-    <app-middle></app-middle>
+    <router-outlet></router-outlet>
     <td-layout-footer>
       <div layout="row" layout-align="start center">
         <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
