@@ -37,21 +37,32 @@
       <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
         {{column.format ? column.format(row[column.name]) : row[column.name]}}
       </td>
-      <td td-data-table-cell (click)="openConfirm(row,'reinstate')" *ngIf="state == 3 || state == 0">
+      <td td-data-table-cell (click)="openConfirm(row,0)" *ngIf="(state == 3 || state == 0) && row.status == 'Reserved'; else disable">
         <button mat-button [class.mat-accent]="!row['comments']">
           <mat-icon>update</mat-icon>
         </button>
       </td>
-      <td td-data-table-cell (click)="openConfirm(row,'remove')" *ngIf="state !=2">
+      <td td-data-table-cell (click)="openConfirm(row,1)" *ngIf="state !=2 && row.status != 'Not Avaliable'; else disable">
         <button mat-button [class.mat-accent]="!row['comments']">
           <mat-icon>highlight_off</mat-icon>
         </button>
       </td>
-      <td td-data-table-cell (click)="openConfirm(row,'add')" *ngIf="state == 3 || state == 2">
+      <td td-data-table-cell (click)="openConfirm(row,2)" *ngIf="(state == 3 || state == 2) && row.status == 'Not Avaliable'; else disable">
         <button mat-button [class.mat-accent]="!row['comments']">
           <mat-icon>library_add</mat-icon>
         </button>
       </td>
+      <ng-template #disable>
+        <td td-data-table-cell *ngIf="state == 3">
+          <button mat-button>
+            <mat-icon>block</mat-icon>
+          </button>
+        </td>
+      </ng-template>
     </tr>
   </tbody>
 </table>
+
+<div class="md-padding" *ngIf="!filteredData.hasData" layout="row" layout-align="center center">
+  <h3>No Books to display.</h3>
+</div>

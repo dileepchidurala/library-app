@@ -1,12 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
 import { Router } from "@angular/router";
 
 import {
   ITdDataTableColumn,
   TdDataTableService
 } from "@covalent/core/data-table";
+import { TdDialogService } from "@covalent/core/dialogs";
+import { ViewContainerRef } from "@angular/core";
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  ErrorStateMatcher
+} from "@angular/material";
 
 //Dailog component
 import { DialogComponent } from "../dialog/dialog.component";
@@ -39,7 +46,7 @@ export class BooksComponent implements OnInit {
     { name: "status", label: "Status", width: 150 }
   ];
 
-  error_msg: string;
+  error_msg: string = null;
 
   res: string;
   constructor(
@@ -47,7 +54,9 @@ export class BooksComponent implements OnInit {
     private dialog: MatDialog,
     private _bookService: BookService,
     private _middleComp: MiddleComponent,
-    private _dataTableService: TdDataTableService
+    private _dataTableService: TdDataTableService,
+    private _dialogService: TdDialogService,
+    private _viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnInit() {
@@ -55,6 +64,23 @@ export class BooksComponent implements OnInit {
       this.books = data;
       this.filter();
     });
+  }
+
+  openAlert(): void {
+    this._dialogService
+      .openAlert({
+        message: this.error_msg,
+        disableClose: true || false, // defaults to false
+        viewContainerRef: this._viewContainerRef, //OPTIONAL
+        title: "Alert", //OPTIONAL, hides if not provided
+        closeButton: "Okay", //OPTIONAL, defaults to 'CLOSE'
+        width: "400px" //OPTIONAL, defaults to 400px
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this._middleComp.avaliablebooks();
+        this.error_msg = null;
+      });
   }
 
   showAlert(event: any): void {
@@ -76,9 +102,11 @@ export class BooksComponent implements OnInit {
         this._bookService.reservationOfBook(event.row.id).subscribe(
           res => {
             this._middleComp.avaliablebooks();
+            this.error_msg = null;
           },
           error => {
             this.error_msg = error;
+            this.openAlert();
           }
         );
       }

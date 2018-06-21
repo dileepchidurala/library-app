@@ -11,6 +11,8 @@ import { TdDialogService } from "@covalent/core/dialogs";
 import { ViewContainerRef } from "@angular/core";
 
 import { Book } from "../book";
+import { MiddleComponent } from "../middle/middle.component";
+
 import { BookService } from "../book.service";
 
 @Component({
@@ -21,7 +23,23 @@ import { BookService } from "../book.service";
 export class AdminSectionComponent implements OnInit {
   books: Array<any> = [];
   state: any;
-  for: any;
+  content = [
+    {
+      message: "Are you sure you want to Reinstate this book ",
+      title: "Reinstate",
+      acceptButton: "Reinstate"
+    },
+    {
+      message: "Are you sure you want to Remove this book ",
+      title: "Remove",
+      acceptButton: "Remove"
+    },
+    {
+      message: "Are you sure you want to Add this book ",
+      title: "ADD",
+      acceptButton: "Add"
+    }
+  ];
 
   filteredData: any[] = this.books;
   filteredTotal: number = this.books.length;
@@ -40,27 +58,38 @@ export class AdminSectionComponent implements OnInit {
     private router: Router,
     private _dialogService: TdDialogService,
     private _viewContainerRef: ViewContainerRef,
+    private _middleComp: MiddleComponent,
     private _bookService: BookService,
     private _dataTableService: TdDataTableService
   ) {}
 
-  openConfirm(row: any): void {
+  openConfirm(row: any, num: number): void {
     this._dialogService
       .openConfirm({
-        message:
-          "This is how simple it is to create a confirm with this wrapper service. Do you agree?",
+        message: this.content[num].message + row.book_name,
         disableClose: true || false, // defaults to false
         viewContainerRef: this._viewContainerRef, //OPTIONAL
-        title: "Confirm", //OPTIONAL, hides if not provided
+        title: this.content[num].title, //OPTIONAL, hides if not provided
         cancelButton: "Disagree", //OPTIONAL, defaults to 'CANCEL'
-        acceptButton: "Agree", //OPTIONAL, defaults to 'ACCEPT'
+        acceptButton: this.content[num].acceptButton, //OPTIONAL, defaults to 'ACCEPT'
         width: "500px" //OPTIONAL, defaults to 400px
       })
       .afterClosed()
       .subscribe((accept: boolean) => {
         if (accept) {
-          console.log(row.status + "accepted!!");
-          // DO SOMETHING
+          if (num == 0) {
+            this._bookService.reinstateBook(row.id).subscribe(res => {
+              this._middleComp.allbooks();
+            });
+          } else if (num == 1) {
+            this._bookService.notAvaliableBook(row.id).subscribe(res => {
+              this._middleComp.allbooks();
+            });
+          } else {
+            this._bookService.reinstateBook(row.id).subscribe(res => {
+              this._middleComp.allbooks();
+            });
+          }
         } else {
           // DO SOMETHING ELSE
           console.log(row.id + "cancelled!!");
