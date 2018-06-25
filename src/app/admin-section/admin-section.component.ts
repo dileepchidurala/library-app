@@ -70,7 +70,7 @@ export class AdminSectionComponent implements OnInit {
         disableClose: true || false, // defaults to false
         viewContainerRef: this._viewContainerRef, //OPTIONAL
         title: this.content[num].title, //OPTIONAL, hides if not provided
-        cancelButton: "Disagree", //OPTIONAL, defaults to 'CANCEL'
+        cancelButton: "Cancel", //OPTIONAL, defaults to 'CANCEL'
         acceptButton: this.content[num].acceptButton, //OPTIONAL, defaults to 'ACCEPT'
         width: "500px" //OPTIONAL, defaults to 400px
       })

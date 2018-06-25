@@ -21,18 +21,6 @@ const routes: Routes = [
         component: BooksComponent
       },
       {
-        path: "remove",
-        component: BooksComponent
-      },
-      {
-        path: "reinstate",
-        component: BooksComponent
-      },
-      {
-        path: "notavaliable",
-        component: BooksComponent
-      },
-      {
         path: "admin",
         component: AdminSectionComponent
       }

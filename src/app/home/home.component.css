@@ -1,21 +1,21 @@
 img {
-    height: 85vh;
-    width: 100vw;
-    object-fit: cover;
+  height: 85vh;
+  width: 100vw;
+  object-fit: cover;
 }
 
 .container {
-    position: relative;
-    text-align: center;
-    color: white;
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
 .centered {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: white;
-    font-size: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

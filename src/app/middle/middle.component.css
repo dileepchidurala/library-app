@@ -41,10 +41,12 @@ h1 {
   color: rgb(29, 166, 230);
   font-family: Georgia, "Times New Roman", Times, serif;
 }
+
 h2 {
   padding-left: 10%;
-  color: rgb(111, 103, 223);
+  color: white;
   float: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 h3 {
   padding-left: 10%;

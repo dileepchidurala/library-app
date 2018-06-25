@@ -37,12 +37,12 @@ export class BooksComponent implements OnInit {
   filteredTotal: number = this.books.length;
   searchTerm: string = "";
   columns: ITdDataTableColumn[] = [
-    { name: "book_id", label: "Book Id", width: 70 },
+    { name: "book_id", label: "Book Id", width: 100 },
     { name: "book_name", label: "Book Name", width: 300 },
     { name: "description", label: "Description", width: 300 },
     { name: "author", label: "Author", width: 200 },
-    { name: "publication", label: "Publication" },
-    { name: "price", label: "Price" },
+    { name: "publication", label: "Publication", width: 200 },
+    { name: "price", label: "Price", width: 100 },
     { name: "status", label: "Status", width: 150 }
   ];
 
@@ -89,7 +89,7 @@ export class BooksComponent implements OnInit {
     dialogRef = this.dialog.open(DialogComponent, {
       width: "350px",
       data: {
-        text: "Are you sure you want to reserve this book",
+        text: "Are you sure you want to reserve ",
         status: event.row.status,
         book: event.row.book_name
       }
