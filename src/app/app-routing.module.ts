@@ -1,37 +1,37 @@
-import { NgModule, Component } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule, Component } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from "./home/home.component";
-import { BooksComponent } from "./books/books.component";
-import { AddBookComponent } from "./add-book/add-book.component";
-import { AdminSectionComponent } from "./admin-section/admin-section.component";
-import { MiddleComponent } from "./middle/middle.component";
+import { HomeComponent } from './home/home.component';
+import { BooksComponent } from './books/books.component';
+import { AddBookComponent } from './add-book/add-book.component';
+import { AdminSectionComponent } from './admin-section/admin-section.component';
+import { MiddleComponent } from './middle/middle.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomeComponent
   },
   {
-    path: "middle",
+    path: 'middle',
     component: MiddleComponent,
     children: [
       {
-        path: "books",
+        path: 'books',
         component: BooksComponent
       },
       {
-        path: "admin",
+        path: 'admin',
         component: AdminSectionComponent
       }
     ]
   },
   {
-    path: "addbook",
+    path: 'addbook',
     component: AddBookComponent
   },
   {
-    path: "**",
+    path: '**',
     component: HomeComponent
   }
 ];

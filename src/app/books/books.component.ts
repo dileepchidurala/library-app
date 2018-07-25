@@ -37,13 +37,13 @@ export class BooksComponent implements OnInit {
   filteredTotal: number = this.books.length;
   searchTerm: string = "";
   columns: ITdDataTableColumn[] = [
-    { name: "book_id", label: "Book Id", width: 100 },
+    { name: "book_id", label: "Book Id", width: 50 },
     { name: "book_name", label: "Book Name", width: 300 },
     { name: "description", label: "Description", width: 300 },
-    { name: "author", label: "Author", width: 200 },
-    { name: "publication", label: "Publication", width: 200 },
-    { name: "price", label: "Price", width: 100 },
-    { name: "status", label: "Status", width: 150 }
+    { name: "author", label: "Author" },
+    { name: "publication", label: "Publication" },
+    { name: "price", label: "Price" },
+    { name: "status", label: "Status" }
   ];
 
   error_msg: string = null;

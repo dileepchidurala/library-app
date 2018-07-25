@@ -1,17 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpModule} from '@angular/http';
-import {FormsModule , ReactiveFormsModule} from '@angular/forms';
-
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 
-//All the module that covalent needed is imported in this shared folder
+// All the module that covalent needed is imported in this shared folder
 import { SharedModule } from './shared/shared.module';
 
-//Angular Materials imports
+// Angular Materials imports
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -25,7 +24,6 @@ import { DialogComponent } from './dialog/dialog.component';
 import { AdminSectionComponent } from './admin-section/admin-section.component';
 import { MiddleComponent } from './middle/middle.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +32,7 @@ import { MiddleComponent } from './middle/middle.component';
     AddBookComponent,
     DialogComponent,
     AdminSectionComponent,
-    MiddleComponent,
+    MiddleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,12 +43,10 @@ import { MiddleComponent } from './middle/middle.component';
     MatInputModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
-  entryComponents: [
-    DialogComponent
-  ],
+  entryComponents: [DialogComponent],
   providers: [BookService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
